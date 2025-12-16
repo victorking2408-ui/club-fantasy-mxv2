@@ -7,14 +7,14 @@ const STORAGE_KEYS = {
 };
 
 const sampleProducts = [
-  {id:"CF-001", team:"Real Madrid", name:"Local 24/25", price:999, sizes:["CH","M","G","XG"], stock:12, image:"img/playeras/real-madrid.png"},
-  {id:"CF-002", team:"Barcelona", name:"Visita 24/25", price:999, sizes:["CH","M","G","XG"], stock:9, image:"img/playeras/barcelona.png"},
-  {id:"CF-003", team:"Manchester City", name:"Local 24/25", price:899, sizes:["CH","M","G","XG"], stock:15, image:"img/playeras/man-city.png"},
-  {id:"CF-004", team:"PSG", name:"Tercera 24/25", price:949, sizes:["CH","M","G","XG"], stock:6, image:"img/playeras/psg.png"},
-  {id:"CF-005", team:"América", name:"Local 24/25", price:799, sizes:["CH","M","G","XG"], stock:20, image:"img/playeras/america.png"},
-  {id:"CF-006", team:"Chivas", name:"Visita 24/25", price:799, sizes:["CH","M","G","XG"], stock:18, image:"img/playeras/chivas.png"},
-  {id:"CF-007", team:"Argentina", name:"Edición Especial", price:1199, sizes:["CH","M","G","XG"], stock:5, image:"img/playeras/argentina.png"},
-  {id:"CF-008", team:"México", name:"Edición Especial", price:1099, sizes:["CH","M","G","XG"], stock:7, image:"img/playeras/mexico.png"},
+  {id:"CF-001", team:"Real Madrid", name:"Local 24/25", price:999, sizes:["CH","M","G","XG"], stock:12, image:"img/playeras/real-madrid.jpg"},
+  {id:"CF-002", team:"Barcelona", name:"Visita 24/25", price:999, sizes:["CH","M","G","XG"], stock:9, image:"img/playeras/barcelona.jpg"},
+  {id:"CF-003", team:"Manchester City", name:"Local 24/25", price:899, sizes:["CH","M","G","XG"], stock:15, image:"img/playeras/man-city.jpg"},
+  {id:"CF-004", team:"PSG", name:"Tercera 24/25", price:949, sizes:["CH","M","G","XG"], stock:6, image:"img/playeras/psg.jpg"},
+  {id:"CF-005", team:"América", name:"Local 24/25", price:799, sizes:["CH","M","G","XG"], stock:20, image:"img/playeras/america.jpg"},
+  {id:"CF-006", team:"Chivas", name:"Visita 24/25", price:799, sizes:["CH","M","G","XG"], stock:18, image:"img/playeras/chivas.jpg"},
+  {id:"CF-007", team:"Argentina", name:"Edición Especial", price:1199, sizes:["CH","M","G","XG"], stock:5, image:"img/playeras/argentina.jpg"},
+  {id:"CF-008", team:"México", name:"Edición Especial", price:1099, sizes:["CH","M","G","XG"], stock:7, image:"img/playeras/mexico.jpg"},
 ];
 
 function money(n){ return new Intl.NumberFormat("es-MX",{style:"currency",currency:"MXN"}).format(n); }
