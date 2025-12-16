@@ -16,3 +16,7 @@ Incluye: Inicio, Catálogo, Carrito, Cotización, Pedido, Modificar/Eliminar (de
 
 ## Nota
 En el menú **Pedido** se incluyen accesos a **Modificar** y **Eliminar** como pide el documento.
+
+
+## Imágenes
+Las imágenes del catálogo están en `img/playeras/` y se enlazan desde `js/app.js`.

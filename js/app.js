@@ -7,14 +7,14 @@ const STORAGE_KEYS = {
 };
 
 const sampleProducts = [
-  {id:"CF-001", team:"Real Madrid", name:"Local 24/25", price:999, sizes:["CH","M","G","XG"], stock:12},
-  {id:"CF-002", team:"Barcelona", name:"Visita 24/25", price:999, sizes:["CH","M","G","XG"], stock:9},
-  {id:"CF-003", team:"Manchester City", name:"Local 24/25", price:899, sizes:["CH","M","G","XG"], stock:15},
-  {id:"CF-004", team:"PSG", name:"Tercera 24/25", price:949, sizes:["CH","M","G","XG"], stock:6},
-  {id:"CF-005", team:"América", name:"Local 24/25", price:799, sizes:["CH","M","G","XG"], stock:20},
-  {id:"CF-006", team:"Chivas", name:"Visita 24/25", price:799, sizes:["CH","M","G","XG"], stock:18},
-  {id:"CF-007", team:"Argentina", name:"Edición Especial", price:1199, sizes:["CH","M","G","XG"], stock:5},
-  {id:"CF-008", team:"México", name:"Edición Especial", price:1099, sizes:["CH","M","G","XG"], stock:7},
+  {id:"CF-001", team:"Real Madrid", name:"Local 24/25", price:999, sizes:["CH","M","G","XG"], stock:12, image:"img/playeras/real-madrid.png"},
+  {id:"CF-002", team:"Barcelona", name:"Visita 24/25", price:999, sizes:["CH","M","G","XG"], stock:9, image:"img/playeras/barcelona.png"},
+  {id:"CF-003", team:"Manchester City", name:"Local 24/25", price:899, sizes:["CH","M","G","XG"], stock:15, image:"img/playeras/man-city.png"},
+  {id:"CF-004", team:"PSG", name:"Tercera 24/25", price:949, sizes:["CH","M","G","XG"], stock:6, image:"img/playeras/psg.png"},
+  {id:"CF-005", team:"América", name:"Local 24/25", price:799, sizes:["CH","M","G","XG"], stock:20, image:"img/playeras/america.png"},
+  {id:"CF-006", team:"Chivas", name:"Visita 24/25", price:799, sizes:["CH","M","G","XG"], stock:18, image:"img/playeras/chivas.png"},
+  {id:"CF-007", team:"Argentina", name:"Edición Especial", price:1199, sizes:["CH","M","G","XG"], stock:5, image:"img/playeras/argentina.png"},
+  {id:"CF-008", team:"México", name:"Edición Especial", price:1099, sizes:["CH","M","G","XG"], stock:7, image:"img/playeras/mexico.png"},
 ];
 
 function money(n){ return new Intl.NumberFormat("es-MX",{style:"currency",currency:"MXN"}).format(n); }
@@ -69,7 +69,7 @@ function renderCatalog(){
     return `
       <div class="col">
         <div class="card h-100 p-2">
-          <div class="img-placeholder mb-3">PLAYERA ${p.team}</div>
+          <img src="${p.image}" alt="Playera ${p.team}" class="img-fluid rounded mb-3" style="aspect-ratio:1/1; object-fit:cover;">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-start gap-2">
               <div>
