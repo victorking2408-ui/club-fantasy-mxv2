@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eliminar · Club Fantasy MX</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <span class="brand-badge">
+        <span class="fw-semibold">Club Fantasy MX</span>
+        <span class="kbd-pill">Demo</span>
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link " href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link " href="catalogo.html">Catálogo</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Pedido
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="pedido.html">Realizar pedido</a></li>
+            <li><a class="dropdown-item" href="carrito.html">Carrito</a></li>
+            <li><a class="dropdown-item" href="modificar.html">Modificar pedido</a></li>
+            <li><a class="dropdown-item" href="eliminar.html">Eliminar pedido</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link " href="cotizacion.html">Cotización</a></li>
+        <li class="nav-item"><a class="nav-link " href="contacto.html">Contacto</a></li>
+
+        <li class="nav-item ms-lg-2">
+          <a class="btn btn-sm btn-outline-light" href="carrito.html">
+            Carrito <span class="badge text-bg-light ms-1" data-cart-badge>0</span>
+          </a>
+        </li>
+        <li class="nav-item ms-lg-2">
+          <a class="btn btn-sm btn-primary" href="admin.html">Administrador</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container my-4">
+
+<div class="mb-3">
+  <h2 class="mb-1">Eliminar pedido</h2>
+  <div class="small-muted">Pantalla basada en la interfaz del documento. En esta demo se elimina por folio.</div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-7">
+    <div class="card p-3">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Buscar (folio)</label>
+          <input class="form-control" id="folioDel" placeholder="CFMX-12345">
+        </div>
+        <div class="col-md-6 d-flex align-items-end">
+          <button class="btn btn-outline-light w-100" id="btnBuscarDel">Buscar</button>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="termsDel">
+            <label class="form-check-label" for="termsDel">Acepto términos y condiciones</label>
+          </div>
+        </div>
+        <div class="col-12 d-grid">
+          <button class="btn btn-danger" id="btnEliminar">Eliminar (demo)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card p-3" id="delOut">
+      <div class="small-muted">Busca un folio creado desde la pantalla de Pedido.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", ()=>{
+  const out = document.getElementById("delOut");
+  const input = document.getElementById("folioDel");
+  const btnBuscar = document.getElementById("btnBuscarDel");
+  const btnEliminar = document.getElementById("btnEliminar");
+  const terms = document.getElementById("termsDel");
+
+  function read(key,f){ try{return JSON.parse(localStorage.getItem(key))??f;}catch(e){return f;} }
+  function write(key,v){ localStorage.setItem(key, JSON.stringify(v)); }
+
+  btnBuscar.addEventListener("click", ()=>{
+    const folio = (input.value||"").trim();
+    const orders = read("cfmx_orders",[]);
+    const o = orders.find(x=>x.folio===folio);
+    out.innerHTML = o ? `
+      <div class="fw-semibold">Folio encontrado: ${folio}</div>
+      <div class="small-muted mt-2">Estatus actual: <b>${o.status}</b></div>
+      <div class="small-muted mt-2">Cliente: <b>${o.customer.nombre}</b></div>
+    ` : `<div class="small-muted">No se encontró ese folio.</div>`;
+  });
+
+  btnEliminar.addEventListener("click", ()=>{
+    if(!terms.checked){ alert("Debes aceptar términos y condiciones"); return; }
+    const folio = (input.value||"").trim();
+    const orders = read("cfmx_orders",[]);
+    const next = orders.filter(x=>x.folio!==folio);
+    if(next.length === orders.length){ alert("Folio no encontrado"); return; }
+    write("cfmx_orders", next);
+    out.innerHTML = `<div class="fw-semibold">Pedido eliminado (demo)</div><div class="small-muted">Folio: ${folio}</div>`;
+  });
+});
+</script>
+
+</main>
+
+<div class="container">
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080">
+    <div id="toastWrap" class="toast-container"></div>
+  </div>
+</div>
+
+<footer class="footer mt-5 py-4">
+  <div class="container d-flex flex-wrap justify-content-between gap-2">
+    <div>© 2025 Club Fantasy MX · Sitio demo para proyecto</div>
+    <div class="small-muted">Sin pagos en línea · Pedido contra entrega / sucursal</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
